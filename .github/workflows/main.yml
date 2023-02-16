@@ -14,4 +14,5 @@ jobs:
       - run: mysql --version
       - run: mysql -u root -proot -e 'SELECT VERSION()'
       - run: mysql -u root -proot -e 'SELECT CURRENT_USER()'
-      - run: mysql -u root -proot -e 'SELECT DATABASE()'
+      - run: mysql -u root -proot -e 'SHOW DATABASES;'
+      - run: mysql -u root -proot -e 'SELECT User FROM mysql.user;'
