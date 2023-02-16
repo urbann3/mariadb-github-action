@@ -31,9 +31,9 @@ mysql -u root -proot -e "GRANT ALL PRIVILEGES ON *.* TO '${DB_USER}'@'localhost'
 mysql -u root -proot -e "FLUSH PRIVILEGES"
 
 # add database
-mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS '${DB_NAME}';"
-mysql -u root -proot -e "GRANT ALL ON '${DB_NAME}'.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';"
-mysql -u root -proot -e "GRANT ALL ON '${DB_NAME}'.* TO 'root'@'localhost' IDENTIFIED BY 'root';"
+mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME};"
+mysql -u root -proot -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';"
+mysql -u root -proot -e "GRANT ALL ON ${DB_NAME}.* TO 'root'@'localhost' IDENTIFIED BY 'root';"
 mysql -u root -proot -e "FLUSH PRIVILEGES;"
 
 # restart service
