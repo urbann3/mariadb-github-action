@@ -1,0 +1,17 @@
+name: build
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.
+        with:
+          mariadb-version: ${{ matrix.mariadb-version }}
+          db-user: user1
+          db-password: pass
+          db-name: testdb
+      - run: mysql --version
+      - run: mysql -u root -proot -e 'SELECT VERSION()'
+      - run: mysql -u root -proot -e 'SELECT CURRENT_USER()'
+      - run: mysql -u root -proot -e 'SELECT DATABASE()'
