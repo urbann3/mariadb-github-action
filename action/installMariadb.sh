@@ -30,18 +30,18 @@ sudo apt-get install mariadb-server-${VERSION}
 sudo systemctl start mariadb
 
 # set root password
-sudo mysqladmin -proot password 'root'
+sudo mysqladmin -proot password ''
 
 # add user
-mysql -u root -proot -e "CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASS}'"
-mysql -u root -proot -e "GRANT ALL PRIVILEGES ON *.* TO '${DB_USER}'@'localhost'"
-mysql -u root -proot -e "FLUSH PRIVILEGES"
+sudo mysql -e "CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASS}'"
+sudo mysql -e "GRANT ALL PRIVILEGES ON *.* TO '${DB_USER}'@'localhost'"
+sudo mysql -e "FLUSH PRIVILEGES"
 
 # add database
-mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME};"
-mysql -u root -proot -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';"
-mysql -u root -proot -e "GRANT ALL ON ${DB_NAME}.* TO 'root'@'localhost' IDENTIFIED BY 'root';"
-mysql -u root -proot -e "FLUSH PRIVILEGES;"
+sudo mysql -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME};"
+sudo mysql -e "GRANT ALL ON ${DB_NAME}.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASS}';"
+sudo mysql -e "GRANT ALL ON ${DB_NAME}.* TO 'root'@'localhost' IDENTIFIED BY 'root';"
+sudo mysql -e "FLUSH PRIVILEGES;"
 
 # restart service
 sudo systemctl restart mariadb
