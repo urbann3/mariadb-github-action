@@ -16,6 +16,10 @@ do
   esac
 done
 
+# clear previous data
+sudo systemctl stop mysql.service
+sudo rm -rf /var/lib/mysql
+
 # install maria db
 sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
 echo "deb https://downloads.mariadb.com/MariaDB/mariadb-${VERSION}/repo/ubuntu $(. /etc/os-release && echo $VERSION_CODENAME) main" | sudo tee /etc/apt/sources.list.d/mariadb.list
@@ -24,6 +28,9 @@ sudo apt-get install mariadb-server-${VERSION}
 
 # start maria db
 sudo systemctl start mariadb
+
+# set root password
+sudo mysqladmin -proot password 'root'
 
 # add user
 mysql -u root -proot -e "CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASS}'"
